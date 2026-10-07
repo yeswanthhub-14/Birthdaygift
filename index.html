@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#050008">
+<title>For My Bestie ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#030106;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  touch-action:manipulation;
+}
+
+#app{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 40%,#28152d 0%,#0d0712 40%,#020106 100%);
+}
+
+/* =========================
+   CINEMATIC OVERLAY
+========================= */
+
+.vignette{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 35%,
+      rgba(0,0,0,.25) 65%,
+      rgba(0,0,0,.9) 100%
+    );
+}
+
+.grain{
+  position:fixed;
+  inset:-100%;
+  z-index:101;
+  pointer-events:none;
+  opacity:.045;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+  animation:grain .15s steps(2) infinite;
+}
+
+@keyframes grain{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2%,-2%)}
+  50%{transform:translate(-2%,2%)}
+  75%{transform:translate(2%,2%)}
+  100%{transform:translate(-2%,-2%)}
+}
+
+/* =========================
+   SCENES
+========================= */
+
+.scene{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1.2s ease;
+}
+
+.scene.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.scene.fade{
+  opacity:0;
+}
+
+/* =========================
+   SCENE 1
+========================= */
+
+#scene1{
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255,90,145,.18),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(180,90,255,.1),
+      transparent 30%
+    );
+}
+
+.intro{
+  position:absolute;
+  top:13%;
+  text-align:center;
+  width:100%;
+  z-index:5;
+}
+
+.kicker{
+  font-size:10px;
+  letter-spacing:7px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.55);
+  animation:fadeDown 2s ease both;
+}
+
+.intro h1{
+  margin-top:18px;
+  font-size:clamp(28px,7vw,65px);
+  font-weight:300;
+  letter-spacing:5px;
+  animation:titleReveal 2s .5s ease both;
+}
+
+@keyframes fadeDown{
+  from{
+    opacity:0;
+    transform:translateY(-30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes titleReveal{
+  from{
+    opacity:0;
+    transform:scale(.7);
+    filter:blur(15px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+}
+
+/* stars */
+
+#stars{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+}
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 0 12px white;
+  animation:twinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle{
+  from{
+    opacity:.15;
+    transform:scale(.5);
+  }
+  to{
+    opacity:1;
+    transform:scale(1.7);
+  }
+}
+
+/* =========================
+   MAGIC HEART
+========================= */
+
+.heart-stage{
+  position:relative;
+  width:250px;
+  height:250px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:80px;
+}
+
+.heart-glow{
+  position:absolute;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:rgba(255,40,110,.15);
+  filter:blur(30px);
+  animation:glowPulse 2s infinite;
+}
+
+@keyframes glowPulse{
+  0%,100%{
+    transform:scale(.8);
+    opacity:.4;
+  }
+  50%{
+    transform:scale(1.25);
+    opacity:1;
+  }
+}
+
+.heart{
+  position:relative;
+  width:90px;
+  height:90px;
+  background:linear-gradient(135deg,#ff416c,#ff174f);
+  transform:rotate(-45deg);
+  box-shadow:
+    0 0 20px #ff174f,
+    0 0 60px rgba(255,20,90,.7),
+    0 0 120px rgba(255,20,90,.35);
+  animation:heartbeat 1.3s infinite;
+}
+
+.heart:before,
+.heart:after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:inherit;
+}
+
+.heart:before{
+  top:-45px;
+  left:0;
+}
+
+.heart:after{
+  top:0;
+  left:45px;
+}
+
+@keyframes heartbeat{
+  0%,100%{
+    transform:rotate(-45deg) scale(1);
+  }
+  15%{
+    transform:rotate(-45deg) scale(1.15);
+  }
+  30%{
+    transform:rotate(-45deg) scale(1);
+  }
+  45%{
+    transform:rotate(-45deg) scale(1.12);
+  }
+}
+
+.heart-label{
+  position:absolute;
+  z-index:5;
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  text-shadow:0 0 10px #000;
+}
+
+/* =========================
+   ARROW
+========================= */
+
+.archery{
+  position:absolute;
+  bottom:12%;
+  left:50%;
+  width:min(520px,90vw);
+  height:120px;
+  transform:translateX(-50%);
+}
+
+.bow{
+  position:absolute;
+  left:3%;
+  top:0;
+  width:95px;
+  height:115px;
+  border:4px solid #e0a15a;
+  border-left:0;
+  border-radius:0 100% 100% 0;
+  filter:
+    drop-shadow(0 0 7px #d8944c)
+    drop-shadow(0 0 20px rgba(255,170,70,.4));
+  transform:rotate(-8deg);
+}
+
+.bow-string{
+  position:absolute;
+  left:3px;
+  top:0;
+  width:2px;
+  height:115px;
+  background:#fff;
+  opacity:.7;
+  transform:rotate(8deg);
+}
+
+.arrow{
+  position:absolute;
+  left:6%;
+  top:55px;
+  width:300px;
+  height:3px;
+  background:linear-gradient(
+    90deg,
+    #fff,
+    #ddd,
+    #e8b06c
+  );
+  cursor:pointer;
+  transform-origin:left center;
+  filter:drop-shadow(0 0 4px white);
+  transition:transform 1.1s cubic-bezier(.15,.85,.2,1);
+}
+
+.arrow:after{
+  content:"";
+  position:absolute;
+  right:-12px;
+  top:-6px;
+  border-left:15px solid #fff;
+  border-top:7px solid transparent;
+  border-bottom:7px solid transparent;
+}
+
+.arrow:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:-8px;
+  width:22px;
+  height:18px;
+  background:
+    linear-gradient(45deg,transparent 45%,#fff 46%,#fff 54%,transparent 55%),
+    linear-gradient(-45deg,transparent 45%,#fff 46%,#fff 54%,transparent 55%);
+}
+
+.shoot{
+  position:absolute;
+  bottom:-42px;
+  width:100%;
+  text-align:center;
+  font-size:10px;
+  letter-spacing:4px;
+  color:rgba(255,255,255,.5);
+  animation:pulseText 1.5s infinite;
+}
+
+@keyframes pulseText{
+  50%{opacity:.25}
+}
+
+/* =========================
+   PARTICLE CANVAS
+========================= */
+
+canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+/* =========================
+   SCENE 2
+========================= */
+
+#scene2{
+  background:#030106;
+}
+
+.flash{
+  position:absolute;
+  width:20px;
+  height:20px;
+  left:50%;
+  top:50%;
+  border-radius:50%;
+  background:white;
+  transform:translate(-50%,-50%) scale(0);
+  box-shadow:
+    0 0 40px white,
+    0 0 100px #ff4778,
+    0 0 200px #ff4778;
+}
+
+.flash.go{
+  animation:flash 1.4s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes flash{
+  0%{
+    transform:translate(-50%,-50%) scale(0);
+    opacity:1;
+  }
+  30%{
+    transform:translate(-50%,-50%) scale(15);
+    opacity:1;
+  }
+  100%{
+    transform:translate(-50%,-50%) scale(100);
+    opacity:0;
+  }
+}
+
+.scene2-text{
+  position:relative;
+  z-index:4;
+  text-align:center;
+  opacity:0;
+}
+
+.scene2-text.show{
+  animation:zoomText 1.5s ease forwards;
+}
+
+.scene2-text .tiny{
+  font-size:11px;
+  letter-spacing:7px;
+  color:#ffb3c5;
+}
+
+.scene2-text h2{
+  margin-top:20px;
+  font-size:clamp(55px,14vw,150px);
+  line-height:.8;
+  font-weight:900;
+  letter-spacing:-7px;
+  background:linear-gradient(
+    120deg,
+    white,
+    #ff668d,
+    white,
+    #ffbbcf
+  );
+  background-size:300%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:gradient 4s linear infinite;
+  text-shadow:0 0 50px rgba(255,60,110,.2);
+}
+
+@keyframes gradient{
+  to{background-position:300% center}
+}
+
+@keyframes zoomText{
+  from{
+    opacity:0;
+    transform:scale(.4);
+    filter:blur(20px);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+}
+
+/* =========================
+   SCENE 3
+========================= */
+
+#scene3{
+  background:
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(255,70,120,.15),
+      transparent 45%
+    ),
+    #050208;
+}
+
+#treeCanvas{
+  position:absolute;
+  inset:0;
+}
+
+.message{
+  position:absolute;
+  top:7%;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(900px,92vw);
+  text-align:center;
+  z-index:10;
+  opacity:0;
+}
+
+.message.show{
+  animation:messageIn 1.8s ease forwards;
+}
+
+@keyframes messageIn{
+  from{
+    opacity:0;
+    transform:translate(-50%,-30px);
+  }
+  to{
+    opacity:1;
+    transform:translate(-50%,0);
+  }
+}
+
+.message .small{
+  font-size:10px;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+}
+
+.message h3{
+  margin-top:12px;
+  font-size:clamp(40px,9vw,88px);
+  line-height:.95;
+  font-weight:800;
+  background:linear-gradient(
+    120deg,
+    white,
+    #ffb6c8,
+    white
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.message p{
+  margin:20px auto 0;
+  max-width:720px;
+  font-size:clamp(13px,2.5vw,18px);
+  line-height:1.75;
+  color:rgba(255,255,255,.82);
+  text-shadow:0 2px 20px #000;
+}
+
+/* =========================
+   FINAL BUTTON
+========================= */
+
+.replay{
+  position:absolute;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:120;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.07);
+  color:white;
+  padding:11px 24px;
+  border-radius:50px;
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  backdrop-filter:blur(15px);
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+}
+
+.replay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.replay:hover{
+  background:rgba(255,255,255,.15);
+}
+
+/* =========================
+   SKIP / START
+========================= */
+
+.start{
+  position:absolute;
+  left:50%;
+  bottom:5%;
+  transform:translateX(-50%);
+  z-index:110;
+  padding:13px 25px;
+  border-radius:50px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.06);
+  color:white;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  backdrop-filter:blur(12px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  .intro{
+    top:11%;
+  }
+
+  .kicker{
+    letter-spacing:4px;
+    font-size:8px;
+  }
+
+  .intro h1{
+    font-size:25px;
+    letter-spacing:3px;
+  }
+
+  .heart-stage{
+    transform:scale(.82);
+    margin-top:50px;
+  }
+
+  .archery{
+    transform:translateX(-50%) scale(.72);
+    bottom:13%;
+  }
+
+  .scene2-text h2{
+    letter-spacing:-3px;
+  }
+
+  .message{
+    top:5%;
+  }
+
+  .message p{
+    font-size:13px;
+    line-height:1.65;
+    max-height:46vh;
+    overflow:hidden;
+  }
+
+  .replay{
+    bottom:15px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <!-- =========================
+       SCENE 1
+  ========================== -->
+
+  <section class="scene active" id="scene1">
+
+    <div id="stars"></div>
+
+    <div class="intro">
+      <div class="kicker">
+        a little something...
+      </div>
+
+      <h1>
+        For My Best Friend
+      </h1>
+    </div>
+
+    <div class="heart-stage">
+
+      <div class="heart-glow"></div>
+
+      <div class="heart"></div>
+
+      <div class="heart-label">
+        FRIENDUU
+      </div>
+
+    </div>
+
+    <div class="archery">
+
+      <div class="bow"></div>
+      <div class="bow-string"></div>
+
+      <div class="arrow" id="arrow"></div>
+
+      <div class="shoot">
+        TAP THE ARROW
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SCENE 2
+  ========================== -->
+
+  <section class="scene" id="scene2">
+
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="flash" id="flash"></div>
+
+    <div class="scene2-text" id="scene2Text">
+
+      <div class="tiny">
+        Keerthi papa 
+      </div>
+
+      <h2>
+        HAPPY<br>
+        BIRTHDAY
+      </h2>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SCENE 3
+  ========================== -->
+
+  <section class="scene" id="scene3">
+
+    <canvas id="treeCanvas"></canvas>
+
+    <div class="message" id="message">
+
+      <div class="small">
+        from your best friend
+      </div>
+
+      <h3>
+        Happy Birthday ❤️
+      </h3>
+
+      <p>
+Happy Birthday, keerthi! ❤️🎂
+        <br><br>
+I’m really lucky to have a friend like you in my life. From random Strangers to such a beautiful bond gaa marindhi and ee bond eppathiki break avvadhu avvanivanu nee gurinchi naku ekkuva theledhu but neelo edho magic undhi raa......
+        <br><br>
+
+I hope this year brings you lots of happiness, success, good memories, and everything you’re working for. Keep smiling, keep being crazy, and never change the person you are.
+<br><br>
+No matter where life takes us, I hope our friendship stays the same. 🫂❤️
+        <br><br>
+Happy Birthday once again, bestie! 🎉
+Have an amazing day — you deserve it! ❤️      </p>
+
+    </div>
+
+    <button class="replay" id="replay">
+      Replay
+    </button>
+
+  </section>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   BASIC ELEMENTS
+===================================================== */
+
+const scene1 = document.getElementById("scene1");
+const scene2 = document.getElementById("scene2");
+const scene3 = document.getElementById("scene3");
+
+const arrow = document.getElementById("arrow");
+const flash = document.getElementById("flash");
+const scene2Text = document.getElementById("scene2Text");
+const message = document.getElementById("message");
+const replay = document.getElementById("replay");
+
+
+/* =====================================================
+   STARS
+===================================================== */
+
+const stars = document.getElementById("stars");
+
+for(let i=0;i<90;i++){
+
+  const s = document.createElement("div");
+
+  s.className="star";
+
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+
+  const size=Math.random()*3+.5;
+
+  s.style.width=size+"px";
+  s.style.height=size+"px";
+
+  s.style.animationDelay=
+    Math.random()*3+"s";
+
+  s.style.animationDuration=
+    (1.5+Math.random()*3)+"s";
+
+  stars.appendChild(s);
+}
+
+
+/* =====================================================
+   SCENE SWITCH
+===================================================== */
+
+function switchScene(from,to){
+
+  from.classList.remove("active");
+
+  setTimeout(()=>{
+    to.classList.add("active");
+  },300);
+
+}
+
+
+/* =====================================================
+   ARROW CINEMATIC
+===================================================== */
+
+let started=false;
+
+arrow.addEventListener("click",shoot);
+
+function shoot(){
+
+  if(started)return;
+
+  started=true;
+
+  /*
+    Arrow flies across the screen.
+  */
+
+  arrow.style.transform=
+    "translateX(75vw) scale(1.25)";
+
+  /*
+    Slight cinematic delay.
+  */
+
+  setTimeout(()=>{
+
+    scene1.style.transition=
+      "opacity .5s ease";
+
+    scene1.style.opacity="0";
+
+  },650);
+
+
+  /*
+    Explosion.
+  */
+
+  setTimeout(()=>{
+
+    scene2.classList.add("active");
+
+    flash.classList.add("go");
+
+    startParticles();
+
+  },900);
+
+
+  /*
+    Birthday typography.
+  */
+
+  setTimeout(()=>{
+
+    scene2Text.classList.add("show");
+
+  },1250);
+
+
+  /*
+    Move to friendship scene.
+  */
+
+  setTimeout(()=>{
+
+    scene2.style.opacity="0";
+
+  },5000);
+
+
+  setTimeout(()=>{
+
+    scene2.classList.remove("active");
+
+    scene2.style.opacity="";
+
+    scene3.classList.add("active");
+
+    startTree();
+
+  },6100);
+
+}
+
+
+/* =====================================================
+   PARTICLE EXPLOSION
+===================================================== */
+
+const pCanvas=
+  document.getElementById("particleCanvas");
+
+const pctx=
+  pCanvas.getContext("2d");
+
+let particles=[];
+
+function resizeParticle(){
+
+  const dpr=
+    window.devicePixelRatio||1;
+
+  pCanvas.width=
+    innerWidth*dpr;
+
+  pCanvas.height=
+    innerHeight*dpr;
+
+  pCanvas.style.width=
+    innerWidth+"px";
+
+  pCanvas.style.height=
+    innerHeight+"px";
+
+  pctx.setTransform(
+    dpr,0,0,dpr,0,0
+  );
+
+}
+
+resizeParticle();
+
+window.addEventListener(
+  "resize",
+  resizeParticle
+);
+
+
+function createExplosion(){
+
+  particles=[];
+
+  const cx=innerWidth/2;
+  const cy=innerHeight/2;
+
+  for(let i=0;i<700;i++){
+
+    const angle=
+      Math.random()*Math.PI*2;
+
+    const speed=
+      Math.random()*12+2;
+
+    particles.push({
+
+      x:cx,
+      y:cy,
+
+      vx:Math.cos(angle)*speed,
+      vy:Math.sin(angle)*speed,
+
+      life:1,
+
+      size:
+        Math.random()*3+1,
+
+      hue:
+        Math.random()*50
+
+    });
+
+  }
+
+}
+
+
+function animateParticles(){
+
+  pctx.clearRect(
+    0,
+    0,
+    innerWidth,
+    innerHeight
+  );
+
+  for(const p of particles){
+
+    p.x+=p.vx;
+    p.y+=p.vy;
+
+    p.vx*=.985;
+    p.vy*=.985;
+
+    p.vy+=.035;
+
+    p.life-=.006;
+
+    if(p.life<=0)continue;
+
+    pctx.beginPath();
+
+    pctx.arc(
+      p.x,
+      p.y,
+      p.size,
+      0,
+      Math.PI*2
+    );
+
+    pctx.fillStyle=
+      `hsla(${p.hue+330},100%,75%,${p.life})`;
+
+    pctx.shadowBlur=15;
+    pctx.shadowColor="#ff4778";
+
+    pctx.fill();
+
+  }
+
+  requestAnimationFrame(
+    animateParticles
+  );
+
+}
+
+function startParticles(){
+
+  createExplosion();
+  animateParticles();
+
+}
+
+
+/* =====================================================
+   TREE CANVAS
+===================================================== */
+
+const canvas=
+  document.getElementById("treeCanvas");
+
+const ctx=
+  canvas.getContext("2d");
+
+function resizeTree(){
+
+  const dpr=
+    devicePixelRatio||1;
+
+  canvas.width=
+    innerWidth*dpr;
+
+  canvas.height=
+    innerHeight*dpr;
+
+  canvas.style.width=
+    innerWidth+"px";
+
+  canvas.style.height=
+    innerHeight+"px";
+
+  ctx.setTransform(
+    dpr,0,0,dpr,0,0
+  );
+
+}
+
+resizeTree();
+
+window.addEventListener(
+  "resize",
+  resizeTree
+);
+
+
+/* =====================================================
+   TREE BRANCH
+===================================================== */
+
+function branch(
+  x1,y1,x2,y2,width
+){
+
+  ctx.beginPath();
+
+  ctx.moveTo(x1,y1);
+  ctx.lineTo(x2,y2);
+
+  ctx.lineWidth=width;
+  ctx.lineCap="round";
+
+  ctx.strokeStyle=
+    "rgba(75,40,42,.95)";
+
+  ctx.shadowBlur=8;
+  ctx.shadowColor=
+    "rgba(0,0,0,.5)";
+
+  ctx.stroke();
+
+}
+
+
+/* =====================================================
+   FLOWER
+===================================================== */
+
+function flower(x,y,size){
+
+  for(let i=0;i<5;i++){
+
+    const a=
+      i*Math.PI*2/5;
+
+    const px=
+      x+Math.cos(a)*size*.55;
+
+    const py=
+      y+Math.sin(a)*size*.55;
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+      px,
+      py,
+      size*.55,
+      size,
+      a,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle=
+      "rgba(255,115,155,.75)";
+
+    ctx.shadowBlur=8;
+    ctx.shadowColor="#ff668f";
+
+    ctx.fill();
+
+  }
+
+  ctx.beginPath();
+
+  ctx.arc(
+    x,y,
+    size*.25,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fillStyle="#ffd77d";
+  ctx.fill();
+
+}
+
+
+/* =====================================================
+   HEART BLOSSOM
+===================================================== */
+
+function heartFlowers(cx,cy,scale){
+
+  for(
+    let t=0;
+    t<Math.PI*2;
+    t+=.12
+  ){
+
+    const x=
+      16*Math.pow(Math.sin(t),3);
+
+    const y=
+      13*Math.cos(t)
+      -5*Math.cos(2*t)
+      -2*Math.cos(3*t)
+      -Math.cos(4*t);
+
+    flower(
+      cx+x*scale,
+      cy-y*scale,
+      2.5+Math.random()*2
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   TREE
+===================================================== */
+
+function startTree(){
+
+  ctx.clearRect(
+    0,0,
+    innerWidth,
+    innerHeight
+  );
+
+  const w=innerWidth;
+  const h=innerHeight;
+
+  const x=w/2;
+
+  /*
+    Main trunk
+  */
+
+  branch(
+    x,
+    h,
+    x-20,
+    h*.72,
+    25
+  );
+
+  branch(
+    x-20,
+    h*.72,
+    x+15,
+    h*.55,
+    17
+  );
+
+  branch(
+    x+15,
+    h*.55,
+    x-10,
+    h*.40,
+    11
+  );
+
+
+  /*
+    Left
+  */
+
+  branch(
+    x-20,
+    h*.72,
+    x-140,
+    h*.58,
+    12
+  );
+
+  branch(
+    x-140,
+    h*.58,
+    x-220,
+    h*.42,
+    7
+  );
+
+  branch(
+    x-90,
+    h*.65,
+    x-210,
+    h*.62,
+    8
+  );
+
+
+  /*
+    Right
+  */
+
+  branch(
+    x+15,
+    h*.55,
+    x+145,
+    h*.43,
+    11
+  );
+
+  branch(
+    x+145,
+    h*.43,
+    x+220,
+    h*.28,
+    7
+  );
+
+  branch(
+    x+90,
+    h*.50,
+    x+220,
+    h*.55,
+    8
+  );
+
+
+  /*
+    Main heart crown
+  */
+
+  heartFlowers(
+    x,
+    h*.29,
+    Math.min(w,h)*.018
+  );
+
+
+  /*
+    Random surrounding blossoms
+  */
+
+  for(let i=0;i<130;i++){
+
+    const angle=
+      Math.random()*Math.PI*2;
+
+    const radius=
+      50+Math.random()*180;
+
+    const px=
+      x+
+      Math.cos(angle)*radius;
+
+    const py=
+      h*.40+
+      Math.sin(angle)*radius*.55;
+
+    flower(
+      px,
+      py,
+      2+Math.random()*3
+    );
+
+  }
+
+
+  /*
+    Ground glow
+  */
+
+  const gradient=
+    ctx.createRadialGradient(
+      x,h*.95,
+      10,
+      x,h*.95,
+      w*.5
+    );
+
+  gradient.addColorStop(
+    0,
+    "rgba(255,80,130,.12)"
+  );
+
+  gradient.addColorStop(
+    1,
+    "transparent"
+  );
+
+  ctx.fillStyle=gradient;
+
+  ctx.fillRect(
+    0,
+    h*.65,
+    w,
+    h*.35
+  );
+
+
+  createPetals();
+
+}
+
+
+/* =====================================================
+   FALLING PETALS
+===================================================== */
+
+function createPetals(){
+
+  for(let i=0;i<45;i++){
+
+    setTimeout(()=>{
+
+      const petal=
+        document.createElement("div");
+
+      petal.style.position="absolute";
+      petal.style.width="8px";
+      petal.style.height="12px";
+      petal.style.borderRadius="100% 0 100% 0";
+      petal.style.background=
+        "#ff7198";
+      petal.style.boxShadow=
+        "0 0 10px #ff4778";
+      petal.style.left=
+        Math.random()*100+"%";
+      petal.style.top="-20px";
+      petal.style.zIndex="4";
+
+      scene3.appendChild(petal);
+
+      const drift=
+        Math.random()*200-100;
+
+      petal.animate(
+        [
+          {
+            transform:
+              "translateY(0) rotate(0deg)",
+            opacity:0
+          },
+          {
+            opacity:.9
+          },
+          {
+            transform:
+              `translate(${drift}px,${innerHeight+100}px)
+               rotate(720deg)`,
+            opacity:0
+          }
+        ],
+        {
+          duration:
+            5000+Math.random()*5000,
+          delay:
+            Math.random()*3000,
+          iterations:Infinity
+        }
+      );
+
+    },i*70);
+
+  }
+
+}
+
+
+/* =====================================================
+   SHOW FINAL MESSAGE
+===================================================== */
+
+setTimeout(()=>{
+
+  message.classList.add("show");
+
+},7600);
+
+
+/* =====================================================
+   REPLAY
+===================================================== */
+
+setTimeout(()=>{
+
+  replay.classList.add("show");
+
+},10500);
+
+
+replay.addEventListener(
+  "click",
+  ()=>{
+    location.reload();
+  }
+);
+
+
+/* =====================================================
+   START MESSAGE AUTOMATICALLY
+===================================================== */
+
+setTimeout(()=>{
+
+  // Allows the animation to begin naturally.
+
+},100);
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+arrow.setAttribute(
+  "tabindex",
+  "0"
+);
+
+arrow.addEventListener(
+  "keydown",
+  e=>{
+    if(
+      e.key==="Enter"||
+      e.key===" "
+    ){
+      e.preventDefault();
+      shoot();
+    }
+  }
+);
+
+</script>
+
+</body>
+</html>
